@@ -11,16 +11,18 @@
         http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--<mvc:interceptors>-->
-    <!--&lt;!&ndash;声明第一个拦截器&ndash;&gt;-->
-    <!--<mvc:interceptor>-->
-        <!--&lt;!&ndash;拦截所有路径及其子路径&ndash;&gt;-->
-        <!--<mvc:mapping path="/**"/>-->
-
-        <!--&lt;!&ndash;声明拦截器对象&ndash;&gt;-->
-        <!--<bean class="com.jhuniversity.crm.handler.LoginInterceptor"/>-->
-    <!--</mvc:interceptor>-->
-<!--</mvc:interceptors>-->
+    <mvc:interceptors>
+    <!--声明第一个拦截器-->
+        <mvc:interceptor>
+            <!--拦截所有路径及其子路径-->
+            <mvc:mapping path="/**"/>
+            <!-- 首页不进行拦截 -->
+            <mvc:exclude-mapping path="index.html" />
+            <mvc:exclude-mapping path="index.jsp" />
+            <!--声明拦截器对象-->
+            <bean class="com.jhuniversity.crm.handler.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!--springmvc的配置文件，在这里声明service  dao ，工具类等对象-->
 
     <!--组件扫描器-->
