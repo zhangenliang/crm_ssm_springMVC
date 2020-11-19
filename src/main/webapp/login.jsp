@@ -12,6 +12,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function () {
+		    //当前页面为顶层页面
+            if (window.top!=window){
+                window.top.location=window.location;
+            }
 		    //页面加载完毕之后，将用户文本框内的值清空
 			$("#loginAct").val("");
 		    //在页面加载完毕之后，让用户的文本框自动获得焦点

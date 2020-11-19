@@ -11,30 +11,33 @@
         http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <mvc:interceptors>
-    <!--声明第一个拦截器-->
-        <mvc:interceptor>
-            <!--拦截所有路径及其子路径-->
-            <mvc:mapping path="/**"/>
-            <!-- 首页不进行拦截 -->
-            <mvc:exclude-mapping path="index.html" />
-            <mvc:exclude-mapping path="index.jsp" />
-            <!--声明拦截器对象-->
-            <bean class="com.jhuniversity.crm.handler.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+
     <!--springmvc的配置文件，在这里声明service  dao ，工具类等对象-->
 
     <!--组件扫描器-->
     <context:component-scan base-package="com.jhuniversity.crm.settings.web.controller"/>
+    <context:component-scan base-package="com.jhuniversity.crm.workbench.web.controller"/>
     <!--视图解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/jsp/"/>-->
+        <!--<property name="suffix" value=".jsp"/>-->
+    <!--</bean>-->
     <!--注解驱动-->
     <mvc:annotation-driven/>
     <!--1，响应ajax请求，返回json
         2，解决静态资源访问问题
     -->
+
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash;声明第一个拦截器&ndash;&gt;-->
+        <!--<bean class="com.jhuniversity.crm.handler.LoginInterceptor"/>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;拦截所有路径及其子路径&ndash;&gt;-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/settings/user/login.do"/>-->
+            <!--<mvc:exclude-mapping path="/login.jsp"/>-->
+            <!--&lt;!&ndash;声明拦截器对象&ndash;&gt;-->
+            <!--<bean class="com.jhuniversity.crm.handler.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 </beans>

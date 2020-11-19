@@ -31,6 +31,7 @@ public class UserController {
         try {
             User user=userService.login(loginAct,loginPwd,ip);
             request.getSession().setAttribute("user",user);
+            request.getSession().setAttribute("user",user);
             map.put("success",true);
         }catch (Exception e){
             e.printStackTrace();

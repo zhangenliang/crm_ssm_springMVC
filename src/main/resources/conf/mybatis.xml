@@ -14,5 +14,6 @@
     <!--</typeAliases>-->
     <mappers>
         <package name="com.jhuniversity.crm.settings.dao"/>
+        <package name="com.jhuniversity.crm.workbench.dao"/>
     </mappers>
 </configuration>

@@ -6,4 +6,7 @@
     <select id="login" resultType="com.jhuniversity.crm.settings.domian.User">
         select * from tbl_user where loginAct=#{loginAct} and loginPwd=#{loginPwd};
     </select>
+    <select id="getUser" resultType="com.jhuniversity.crm.settings.domian.User">
+        select id,name from tbl_user;
+    </select>
 </mapper>
