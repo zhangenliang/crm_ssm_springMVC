@@ -76,7 +76,7 @@ public class ActivityRemark {
 
     @Override
     public String toString() {
-        return "ActivityRemarkDao{" +
+        return "ActivityRemark{" +
                 "id='" + id + '\'' +
                 ", noteContent='" + noteContent + '\'' +
                 ", createTime='" + createTime + '\'' +

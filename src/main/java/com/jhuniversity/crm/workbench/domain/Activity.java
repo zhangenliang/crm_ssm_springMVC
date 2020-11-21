@@ -103,7 +103,7 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "ActivityRemarkDao{" +
+        return "Activity{" +
                 "id='" + id + '\'' +
                 ", owner='" + owner + '\'' +
                 ", name='" + name + '\'' +

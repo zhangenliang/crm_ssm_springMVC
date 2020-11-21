@@ -26,4 +26,74 @@
         #{createBy}
         )
     </insert>
+    <select id="getTotalByCondition" resultType="int">
+        select
+        count(*)
+        from tbl_Activity a
+        join tbl_user u
+        on a.owner=u.id
+
+        <where>
+            <if test="name!=null and name !='' ">
+                a.name like '%' #{name} '%'
+            </if>
+            <if test="owner!=null and owner !='' ">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test="startDate!=null and startDate !='' ">
+                and a.startDate &gt; #{startDate}
+            </if>
+            <if test="endDate!=null and endDate !='' ">
+                and a.endDate &lt; #{endDate}
+            </if>
+        </where>
+    </select>
+    <select id="getActivityByCondition" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select
+        a.id,
+        a.name,
+        u.name as owner,
+        a.startDate,
+        a.endDate
+        from tbl_Activity a
+        join tbl_user u
+        on a.owner=u.id
+        <where>
+            <if test="name!=null and name!=''">
+                a.name like '%' #{name} '%'
+            </if>
+            <if test="owner!=null and owner!=''">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test="startDate!=null and startDate!=''">
+                and a.startDate &gt; #{startDate}
+            </if>
+            <if test="endDate!=null and endDate!=''">
+                and a.endDate &lt; #{endDate}
+            </if>
+        </where>
+        order by a.createTime desc
+        limit #{skipCount},#{pageSize}
+    </select>
+    <delete id="delete">
+        delete from tbl_activity where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="getById" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select * from tbl_activity where id=#{id}
+    </select>
+    <update id="update">
+        update tbl_activity set
+        owner=#{owner},
+        name=#{name},
+        startDate=#{startDate},
+        endDate=#{endDate},
+        cost=#{cost},
+        description=#{description},
+        editTime=#{editTime},
+        editBy=#{editBy}
+        where id=#{id}
+    </update>
 </mapper>
