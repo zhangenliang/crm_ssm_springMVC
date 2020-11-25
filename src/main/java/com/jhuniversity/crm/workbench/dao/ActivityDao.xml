@@ -96,4 +96,63 @@
         editBy=#{editBy}
         where id=#{id}
     </update>
+    <select id="getByIdForDetail" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select
+        a.id,
+        u.name as owner,
+        a.name,
+        a.startDate,
+        a.endDate,
+        a.cost,
+        a.description,
+        a.createTime,
+        a.createBy,
+        a.editTime,
+        a.editBy
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        where a.id=#{id}
+    </select>
+    <select id="getActivityListById" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select
+        car.id as id,
+        u.name as owner,
+        a.name,
+        a.startDate,
+        a.endDate
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        join tbl_clue_activity_relation car
+        on car.activityId=a.id
+        where car.clueId=#{clueId}
+    </select>
+    <select id="showActivityRelation" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select
+        a.id,
+        u.name as owner,
+        a.name,
+        a.startDate,
+        a.endDate
+
+        from tbl_activity a
+        join tbl_user u
+        on u.id=a.owner
+        order by a.createTime desc ;
+    </select>
+    <select id="getActivityListByNameAndNoClueId" resultType="com.jhuniversity.crm.workbench.domain.Activity">
+        select
+        a.id,
+        a.name,
+        a.startDate,
+        a.endDate,
+        u.name as owner
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        where a.name like '%' #{aname} '%' and a.id not in (
+        select activityId from tbl_clue_activity_relation where clueId=#{clueId}
+        )
+    </select>
 </mapper>

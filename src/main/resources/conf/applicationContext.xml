@@ -27,7 +27,7 @@
             configLocation 属性是Resource类型，读取配置文件的
             它的赋值，使用value，指定文件路径，使用classpath：表示文件的位置
         -->
-        <!--<property name="configLocation" value="classpath:conf/mybatis.xml"/>-->
+        <property name="configLocation" value="classpath:conf/mybatis.xml"/>
     </bean>
     <!--声明dao-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -41,6 +41,7 @@
     <!--声明service的注解@Service 所在的包名位置-->
     <context:component-scan base-package="com.jhuniversity.crm.settings.service"/>
     <context:component-scan base-package="com.jhuniversity.crm.workbench.service"/>
+
 
     <!--配置事物：注解的配置或者aspectj的配置-->
 

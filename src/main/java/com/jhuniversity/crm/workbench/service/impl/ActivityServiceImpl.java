@@ -6,6 +6,7 @@ import com.jhuniversity.crm.vo.Vo;
 import com.jhuniversity.crm.workbench.dao.ActivityDao;
 import com.jhuniversity.crm.workbench.dao.ActivityRemarkDao;
 import com.jhuniversity.crm.workbench.domain.Activity;
+import com.jhuniversity.crm.workbench.domain.ActivityRemark;
 import com.jhuniversity.crm.workbench.service.ActivityService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -85,5 +86,65 @@ public class ActivityServiceImpl implements ActivityService {
             flag=false;
         }
         return flag;
+    }
+
+    @Override
+    public Activity detail(String id) {
+        System.out.println("进入到活动查询详细信息service部分");
+        Activity activity=activityDao.getByIdForDetail(id);
+        return activity;
+    }
+
+    @Override
+    public  List<ActivityRemark> getRemarkListByAid(String activityId) {
+        List<ActivityRemark> list=activityRemarkDao.getRemarkListByAid(activityId);
+        return list;
+    }
+
+    @Override
+    public boolean deleteRemarkById(String id) {
+        System.out.println("进入到活动备注删除service部分");
+        boolean flag=true;
+        int count=activityRemarkDao.deleteRemarkById(id);
+        if (count!=1){
+            flag=false;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean updateRemark(ActivityRemark activityRemark) {
+        System.out.println("进入到活动备注更新service部分");
+        boolean flag=true;
+        int count=activityRemarkDao.updateRemark(activityRemark);
+        if (count!=1){
+            flag=false;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean saveRemark(ActivityRemark ar) {
+        System.out.println("进入到活动备注添加service部分");
+        boolean flag=true;
+        int count=activityRemarkDao.saveRemark(ar);
+        if (count!=1){
+            flag=false;
+        }
+        return flag;
+    }
+
+    @Override
+    public List<Activity> getActivityListById(String clueId) {
+        System.out.println("进入线索与活动关联service");
+        List<Activity> aList=activityDao.getActivityListById(clueId);
+        return aList;
+    }
+
+    @Override
+    public List<Activity> getActivityListByNameAndNoClueId(Map<String, String> map) {
+        System.out.println("进入打开关联活动窗口service");
+        List<Activity>aList=activityDao.getActivityListByNameAndNoClueId(map);
+        return aList;
     }
 }

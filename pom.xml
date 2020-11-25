@@ -59,6 +59,12 @@
       <artifactId>spring-jdbc</artifactId>
       <version>5.2.5.RELEASE</version>
     </dependency>
+    <!--jsp中下拉列表做循环的依赖-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
     <!--jackson依赖-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

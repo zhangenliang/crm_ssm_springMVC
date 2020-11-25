@@ -30,8 +30,9 @@ public class UserController {
                 Map<String,Object>map=new HashMap<>();
         try {
             User user=userService.login(loginAct,loginPwd,ip);
+            System.out.println(user.getId()+"------------------------------------------------");
             request.getSession().setAttribute("user",user);
-            request.getSession().setAttribute("user",user);
+            //request.getSession().setAttribute("user",user);
             map.put("success",true);
         }catch (Exception e){
             e.printStackTrace();
